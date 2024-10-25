@@ -207,14 +207,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--highlight-bg); /* Cor do thumb (parte rolável) */
+    background-color: var(--button-hover-bg); /* Cor do thumb (parte rolável) */
     border-radius: 10px;
     border: 2px solid var(--secondary-bg); /* Cor do contorno da thumb */
     box-shadow: var(--box-shadow); /* Efeito de sombra */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--button-hover-bg); /* Cor ao passar o mouse */
+    background-color: var(--button-bg); /* Cor ao passar o mouse */
 }
 
 ::-webkit-scrollbar-track {
