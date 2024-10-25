@@ -11,7 +11,8 @@
     --success-color: #69F0AE;
     --danger-color: #ff0057;
     --focus-outline: #00E676;
-    --border-radius: 12px;
+    --border-radius-2: 50%;
+    --border-radius: 10px;
     --box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
     --dashheader: #00e5ff;
 }
@@ -172,7 +173,7 @@ body {
     display: flex;
     justify-content: space-between; /* Mantém os elementos separados */
     align-items: center;
-    padding: 12px;
+    padding: 10px;
     background-color: var(--input-bg);
     border-radius: var(--border-radius);
     margin: 10px;
@@ -233,10 +234,13 @@ body {
 .transaction-item button {
     background-color: var(--button-hover-bg);
     color: white;
-    border: none;
+    display: flex;
     padding: 8px 12px;
+    border: none;
     border-radius: var(--border-radius);
     cursor: pointer;
+    gap: 5px;
+    align-content: space-between;
     transition: background-color 0.3s ease;
 }
 
@@ -425,7 +429,10 @@ body {
         text-align: center;
         align-items: center;
         gap: 10px;
+        font-size: 12px;
     }
+
+
 }
 
 /* Ajustes para dispositivos móveis ainda menores */
@@ -461,4 +468,6 @@ body {
         align-items: center;
         justify-content: space-between;
     }
+
+   
 }

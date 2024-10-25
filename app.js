@@ -116,14 +116,33 @@ function displayTransactions() {
             <span class="transaction-description">${transaction.description} (${translateType(transaction.category)})</span>
             <span class="transaction-amount">R$ ${transaction.amount.toFixed(2).replace('.', ',')}</span>
             <div class="actions" style="display: inline-flex; gap: 5px;">
-                <button class="edit" onclick="openEditModal(${transaction.id})">Editar</button>
-                <button class="delete" onclick="confirmDeleteTransaction(${transaction.id})">Excluir</button>
+                <button class="edit" onclick="openEditModal(${transaction.id})">
+                    <i class="fas fa-edit"></i><span class="button-text">Editar</span>
+                </button>
+                <button class="delete" onclick="confirmDeleteTransaction(${transaction.id})">
+                    <i class="fas fa-trash"></i><span class="button-text">Excluir</span>
+                </button>
             </div>
         `;
 
         transactionList.appendChild(transactionItem);
     });
+
+    toggleButtonText();
 }
+function toggleButtonText() {
+    const isMobile = window.innerWidth <= 768;
+    const buttonTexts = document.querySelectorAll(".button-text");
+
+    buttonTexts.forEach(text => {
+        text.style.display = isMobile ? "none" : "inline";
+    });
+}
+
+// Chama a função ao carregar a página e ao redimensionar a janela
+document.addEventListener("DOMContentLoaded", toggleButtonText);
+window.addEventListener("resize", toggleButtonText);
+
 
 function openEditModal(id) {
     const transaction = transactions.find(t => t.id === id);
