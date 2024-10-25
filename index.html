@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>Dashboard de Finanças Pessoais</h1>
+        </header>
+        <section class="dashboard-summary">
+            <div class="summary-item">
+                <h2 id="Saldo">Saldo</h2>
+                <p id="balance">R$ 0,00</p>
+            </div>
+            <div class="summary-item">
+                <h2 id="Entradas">Entradas</h2>
+                <p id="income">R$ 0,00</p>
+            </div>
+            <div class="summary-item">
+                <h2 id="Despesas">Despesas</h2>
+                <p id="expenses">R$ 0,00</p>
+            </div>
+        </section>
+        <section class="dashboard-filters">
+            <label for="filter-type">Filtrar por Tipo:</label>
+            <select id="filter-type">
+                <option value="all">Todas</option>
+                <option value="income">Entradas</option>
+                <option value="expense">Despesas</option>
+            </select>
+            <label for="filter-period">Filtrar por Período:</label>
+            <select id="filter-period">
+                <option value="all">Todo o Tempo</option>
+                <option value="week">Esta Semana</option>
+                <option value="month">Este Mês</option>
+            </select>
+        </section>
+        <section class="dashboard-transactions">
+            <h2>Transações</h2>
+            <form id="transaction-form">
+                <input type="text" id="description" placeholder="Descrição" required>
+                <input type="number" id="amount" placeholder="Valor" required>
+                <select id="type">
+                    <option value="income">Entrada</option>
+                    <option value="expense">Despesa</option>
+                </select>
+                <select id="category">
+                    <option value="Salário">Salário</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Entretenimento">Entretenimento</option>
+                    <option value="Transporte">Transporte</option>
+                </select>
+                <button type="submit">Adicionar Transação</button>
+            </form>
+            <ul id="transaction-list"></ul>
+        </section>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="cancel-edit">&times;</span>
+            <h2>Editar Transação</h2>
+            <form id="edit-transaction-form">
+                <input type="text" id="edit-description" required>
+                <input type="number" id="edit-amount" required>
+                <select id="edit-type">
+                    <option value="income">Entrada</option>
+                    <option value="expense">Despesa</option>
+                </select>
+                <select id="edit-category">
+                    <option value="Salário">Salário</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Entretenimento">Entretenimento</option>
+                    <option value="Transporte">Transporte</option>
+                </select>
+                <button type="submit">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div id="delete-confirmation" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" id="cancel-delete" style="cursor:pointer;">&times;</span>
+            <h2>Você tem certeza que deseja excluir esta transação?</h2>
+            <button id="confirm-delete">Sim, excluir</button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

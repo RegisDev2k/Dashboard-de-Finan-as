@@ -1,0 +1,464 @@
+/* Variáveis de cores */
+:root {
+    --primary-bg: #181818;
+    --secondary-bg: #242424;
+    --highlight-bg: #353535;
+    --input-bg: #484848;
+    --primary-text: #E0E0E0;
+    --secondary-text: #76FF03;
+    --button-bg: #00E5FF;
+    --button-hover-bg: #00BCD4;
+    --success-color: #69F0AE;
+    --danger-color: #ff0057;
+    --focus-outline: #00E676;
+    --border-radius: 12px;
+    --box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    --dashheader: #00e5ff;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* Estilo da página */
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    font-size: 16px;
+}
+
+/* Container principal */
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Cabeçalho */
+.dashboard-header {
+    text-align: center;
+    color: var(--primary-text);
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+#Saldo {
+    color: var(--dashheader)
+}
+
+#Despesas {
+    color: var(--danger-color)
+}
+
+#Entradas {
+    color: var(--focus-outline)
+}
+
+/* Resumo do dashboard */
+.dashboard-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.summary-item {
+    background-color: var(--highlight-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.summary-item:hover {
+    background-color: #3E3E3E;
+    transform: translateY(-8px);
+}
+
+.summary-item h2 {
+    color: var(--success-color);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.summary-item p {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Transações */
+.dashboard-transactions {
+    background-color: var(--highlight-bg);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.dashboard-transactions h2 {
+    margin: 10px;
+    text-align: center;
+}
+
+/* Formulário de transações */
+#transaction-form {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+#transaction-form input, 
+#transaction-form select, 
+#transaction-form button {
+    padding: 12px;
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+#transaction-form input, 
+#transaction-form select {
+    flex: 1;
+    background-color: var(--input-bg);
+    color: var(--primary-text);
+}
+
+#transaction-form input:focus, 
+#transaction-form select:focus {
+    outline: 2px solid var(--button-bg);
+    background-color: var(--highlight-bg);
+}
+
+#transaction-form button {
+    background-color: var(--button-hover-bg);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+#transaction-form button:hover {
+    background-color: var(--secondary-text);
+    transform: scale(1.01);
+    color: var(--primary-bg);
+}
+
+/* Lista de transações */
+#transaction-list {
+    list-style: none;
+    max-height: 180px; /* Aproximadamente 3 itens visíveis */
+    overflow-y: auto;  /* Ativa o scroll se houver mais de 3 itens */
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between; /* Mantém os elementos separados */
+    align-items: center;
+    padding: 12px;
+    background-color: var(--input-bg);
+    border-radius: var(--border-radius);
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+}
+
+.transaction-item .description {
+    flex-grow: 1; /* A descrição ocupa todo o espaço disponível */
+    text-align: left; /* Nome alinhado à esquerda */
+}
+
+.transaction-item .amount {
+    flex-grow: 1; /* Valor ocupa espaço central */
+    text-align: center; /* Valor alinhado ao centro */
+}
+
+.transaction-item .actions {
+    display: flex;
+    justify-content: flex-end; /* Mantém os botões à direita */
+    gap: 10px; /* Espaçamento entre os botões */
+    flex-shrink: 0; /* Garante que os botões não sejam comprimidos */
+}
+
+
+
+/* Scrollbar personalizado */
+::-webkit-scrollbar {
+    width: 10px; /* Largura da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--highlight-bg); /* Cor do thumb (parte rolável) */
+    border-radius: 10px;
+    border: 2px solid var(--secondary-bg); /* Cor do contorno da thumb */
+    box-shadow: var(--box-shadow); /* Efeito de sombra */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--button-hover-bg); /* Cor ao passar o mouse */
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--input-bg); /* Cor do trilho */
+    border-radius: 10px;
+}
+
+
+.transaction-item.income {
+    border-left: 6px solid var(--secondary-text);
+}
+
+.transaction-item.expense {
+    border-left: 6px solid var(--danger-color);
+}
+
+.transaction-item button {
+    background-color: var(--button-hover-bg);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.transaction-item button:hover {
+    background-color: var(--danger-color);
+}
+
+.transaction-item button.edit {
+    background-color: var(--button-hover-bg);
+}
+
+.transaction-item button.edit:hover {
+    background-color: var(--focus-outline);
+}
+
+/* Filtros */
+.dashboard-filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.dashboard-filters select {
+    padding: 12px;
+    background-color: var(--input-bg);
+    color: var(--primary-text);
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+.dashboard-filters select:focus {
+    outline: 2px solid var(--button-bg);
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundo semitransparente */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Para garantir que esteja no topo */
+}
+
+/* Conteúdo do modal */
+.modal-content {
+    background-color: var(--secondary-bg);
+    padding: 20px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    color: var(--primary-text);
+    box-shadow: var(--box-shadow);
+    position: relative; /* Para alinhar o ícone de fechar */
+    opacity: 0;
+    animation: fadeInModal 0.4s ease forwards; /* Animação suave ao abrir */
+}
+
+/* Animação de fade in */
+@keyframes fadeInModal {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Modal começa ligeiramente deslocado */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Volta à posição original */
+    }
+}
+
+/* Título do modal */
+.modal-content h2 {
+    text-align: center;
+    margin: 40px;
+    font-size: 1.5rem;
+}
+
+/* Formulário no modal */
+.modal-content form {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+/* Inputs e selects no modal */
+.modal-content input, 
+.modal-content select {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: var(--input-bg);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.modal-content input:focus, 
+.modal-content select:focus {
+    outline: 2px solid var(--button-bg);
+    background-color: var(--highlight-bg);
+}
+
+/* Botões */
+.modal-content button {
+    position: absolute;
+    right: 10px;
+    padding: 10px;
+    bottom: 10px;
+    background-color: var(--button-hover-bg);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-content button:hover {
+    background-color: var(--danger-color); /* Mudança ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+/* Botões de cancelamento com estilo de alerta */
+.modal-content button#cancel-edit, 
+.modal-content button#cancel-delete {
+    background-color: var(--danger-color);
+}
+
+.modal-content button#cancel-edit:hover, 
+.modal-content button#cancel-delete:hover {
+    background-color: darkred;
+    transform: translateY(-2px); /* Elevação ao passar o mouse */
+}
+
+/* Ícone de fechar (X) */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 40px;
+    color: var(--primary-text);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: var(--danger-color); /* Cor ao passar o mouse */
+}
+
+/* Animação de fade in */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dashboard-summary {
+        flex-direction: column;
+    }
+
+    .summary-item {
+        min-width: 100%;
+    }
+
+    #transaction-form {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #transaction-form input, 
+    #transaction-form select, 
+    #transaction-form button {
+        width: 80%;
+        /* margin-bottom: 10px; */
+        
+    }
+
+    .transaction-item {
+        text-align: center;
+        align-items: center;
+        gap: 10px;
+    }
+}
+
+/* Ajustes para dispositivos móveis ainda menores */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .dashboard-container {
+        padding: 15px;
+    }
+
+    .dashboard-header {
+        margin-top: 30px;
+        font-size: 1.1rem;
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+
+    .summary-item h2 {
+        font-size: 1.3rem;
+    }
+
+    .summary-item p {
+        font-size: 1.8rem;
+    }
+
+    .dashboard-filters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
